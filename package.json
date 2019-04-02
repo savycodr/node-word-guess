@@ -1,0 +1,23 @@
+{
+  "name": "node-word-guess",
+  "version": "1.0.0",
+  "description": "A command line word guess game.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/savycodr/node-word-guess.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/savycodr/node-word-guess/issues"
+  },
+  "homepage": "https://github.com/savycodr/node-word-guess#readme",
+  "dependencies": {
+    "inquirer": "^6.2.2"
+  }
+}
