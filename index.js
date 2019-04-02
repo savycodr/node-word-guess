@@ -18,12 +18,10 @@ var travelWords = [
   "restaurant"
 ];
 
-//   * Randomly selects a word and uses the `Word` constructor to store it
 // shuffle the array so you don't always get the same order of words
 travelWords = shuffle(travelWords);
-// Get a new top secret word, select the first one
+// Get a new top secret word, select the first one and use it to create a Word object
 var theWord = new Word(travelWords[0]);
-console.log("The word is "+ theWord.theWord);
 // keep going until reached 10 tries
 var maxTry = 10;
 // the number of tries left
@@ -34,12 +32,12 @@ var numGames = 0;
 
 //  Prompts the user for each guess and keeps track of the user's remaining guesses
 var askQuestion = function() {
-  // if statement to ensure that our questions are only asked five times
+  // if statement to ensure that our questions are only asked if we still have tries left
   if (triesLeft > 0) {
 
     // Create a "Prompt" with a question.
     inquirer.prompt([
-        // Here we give the user a list to choose from.
+        // Here we display the hidded word to the user and ask for their guess
         {
           type: "input",
           message: "Tries left:" + triesLeft + "\nHere is your word: " + theWord.displayWord() + "\nPlease guess a letter",
@@ -47,10 +45,11 @@ var askQuestion = function() {
         }
       ])
       .then(function(inquirerResponse) {
-        console.log("the prompt is " + inquirerResponse.action)
+        // Check the letter entered to see if it is in the secret word.
         theWord.checkUserGuess(inquirerResponse.action);
+        // decrease the number of tries left
         triesLeft--;
-        // Want to check if the word was guessed. Print Congratualions and grab a new word.
+        // Check if the word was guessed. If it was guessed, Print Congratualions and grab a new word using  resetGame.
         if (!theWord.displayWord().includes("_")){
           console.log("Congratulations you got it!");
           console.log("Let's pick a new word!");
@@ -59,20 +58,20 @@ var askQuestion = function() {
         askQuestion();
       });
 
-    }// end of if
+    }// end of if. When we get here, we've run out of tries
     else {
+      // print the correct answer
       console.log("You are out of guesses. The answer is: " + theWord.theWord);
       console.log("Let's pick a new word!");
       resetGame();
       askQuestion();
     }
 }// end of ask question
+// this method starts the game
 askQuestion();
 
-
 // An array for players guesses
-var guesses;
-
+// var guesses;
 
 // Let's jumble the order of travelWords array, So you never know what you're going to get.
 // Fisher-Yates (aka Knuth) Shuffle.
@@ -100,9 +99,10 @@ function resetGame()
 {
     //Increase the number of games for next time
     numGames++;
-    // if we have run through the entire array of candy words, We will reset and run through them again
+    // if we have run through the entire array of travel words, We will reset and run through them again
     if (numGames==travelWords.length)
     {
+        travelWords = shuffle(travelWords);
         numGames = 0;
     }
     // Get a new top secret word

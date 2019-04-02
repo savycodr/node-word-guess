@@ -1,27 +1,25 @@
-// * **Word.js**: Contains a constructor, Word that depends on the Letter constructor. This is used to create an object representing the current word the user is attempting to guess. That means the constructor should define:
+// Contains a constructor, Word that depends on the Letter constructor. It is used to create an object representing the current word the user is attempting to guess. "_ _ _ a _ e". 
 
-//   * An array of `new` Letter objects representing the letters of the underlying word
-
-//   * A function that returns a string representing the word. This should call the function on each letter object (the first function defined in `Letter.js`) that displays the character or an underscore and concatenate those together.
-
-//   * A function that takes a character as an argument and calls the guess function on each letter object (the second function defined in `Letter.js`)
 var Letter = require("./letter");
 
+// A constructor that take the full secret word that the user needs to guess
 function Word(theWord){
+    // the word that the user tries to guess
     this.theWord = theWord;
-    // An array of `new` Letter objects representing the letters of the underlying word
+    // An array of `new` Letter objects representing the letters of the underlying word. These Letters will know if they should display "a" or "_"
     this.letterArray = [];
 
-    // set array of letters from theWord
+    // set an array of letters from theWord
     var letters = this.theWord.split("");
-    // for every letter in theWord, create a new Letter and add to the array
+    // for every letter in theWord, create a new Letter object and add to the array
     for (var i=0; i<letters.length; i++)
     {
         var letter = new Letter (letters[i]);
         this.letterArray.push(letter);
     }
 
-    //the display of _ _ _ for the word one _ for each letter in the word. Returns what shall be displayed to command line
+    // A function that returns a string representing the word. 
+    // One _ for each letter in the word. Unless the letter has been guessed and it will return the letter (_ _ _ a _). This function returns the string that shall be displayed to command line
     this.displayWord = function() {
         var display = "";
         for (i=0; i<this.letterArray.length; i++){
@@ -29,9 +27,9 @@ function Word(theWord){
             display = display.concat(letter.getLetter() + " ");
         }
         return display;
-    } // end of function
+    } 
 
-    //   * A function that takes a character as an argument and calls the guess function on each letter object (the second function defined in `Letter.js`)
+    // A function that takes a character as an argument and calls the checkLetter function on each Letter object 
     this.checkUserGuess = function (userGuess)
     {
         for (i=0; i<this.letterArray.length; i++){
@@ -39,7 +37,6 @@ function Word(theWord){
             letter.checkLetter(userGuess);
         }
     }
-
 }
 
 module.exports = Word;

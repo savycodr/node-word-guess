@@ -1,21 +1,16 @@
-// **Letter.js**: Contains a constructor, Letter. This constructor should be able to either display an underlying character or a blank placeholder (such as an underscore), depending on whether or not the user has guessed the letter. That means the constructor should define:
+//  Contains a constructor, Letter. This constructor has a function to  display its  character or a blank placeholder (such as an underscore), depending on whether or not the user has guessed the letter. It also has a function to set whether the user has guessed the letter.
 
-// * A string value to store the underlying character for the letter
 
-// * A boolean value that stores whether that letter has been guessed yet
-
-// * A function that returns the underlying character if the letter has been guessed, or a placeholder (like an underscore) if the letter has not been guessed
-
-// * A function that takes a character as an argument and checks it against the underlying character, updating the stored boolean value to true if it was guessed correctly
+// * A constructor that takes a character as an argument and set the object's letter to the input.
 
 function Letter(letter){
 
     // A single letter. Make sure we are only dealing with lowercase
     this.letter = letter.toLowerCase();
-    // has this letter been guessed before?
+    // has this letter been guessed?
     this.guessedYet = false;
 
-    // this returns the letter if it has been guessed otherwise _
+    // this function returns the object's letter if it has been guessed otherwise _
     this.getLetter = function( ){
         if (this.guessedYet===true)
         {
@@ -24,16 +19,13 @@ function Letter(letter){
         return "_";
     }
 
-    // this function checks if the letter the user guessed matches this letter
+    // this function checks if the letter the user guessed matches the letter in this object 
     this.checkLetter = function(userGuess){
-        var uGuess = userGuess.toLowerCase();
-        console.log("User guessed " + uGuess);
+        // want to only compare the lower case 
         if (userGuess.toLowerCase() == this.letter)
         {
             this.guessedYet = true;
-            // return true;
         }
-        console.log ("the booliean is " + this.guessedYet)
     }
 }
 
