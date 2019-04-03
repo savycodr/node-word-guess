@@ -24,7 +24,8 @@ function Word(theWord){
         var display = "";
         for (i=0; i<this.letterArray.length; i++){
             var letter = this.letterArray[i];
-            display = display.concat(letter.getLetter() + " ");
+            // Note this next line is calling Letter's toString method within the concat
+            display = display.concat(letter + " ");
         }
         return display;
     } 

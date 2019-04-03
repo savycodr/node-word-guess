@@ -11,7 +11,8 @@ function Letter(letter){
     this.guessedYet = false;
 
     // this function returns the object's letter if it has been guessed otherwise _
-    this.getLetter = function( ){
+    // it overwrites the javascript toString function
+    this.toString = function( ){
         if (this.guessedYet===true)
         {
             return this.letter;
@@ -34,6 +35,7 @@ module.exports = Letter;
 // Test Case
 // var letter = new Letter("H");
 // console.log("the letter is " + letter.letter);
-// console.log("you've guessed this before " + letter.getLetter());
+// Note this next line of code calls letter.toString() implicitly
+// console.log("you've guessed this before " + letter);
 // letter.checkLetter("H");
-// console.log("you've guessed this before " + letter.getLetter());
+// console.log("you've guessed this before " + letter);
