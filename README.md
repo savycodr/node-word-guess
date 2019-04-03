@@ -16,3 +16,4 @@ A command line word guess game. Hint: the theme of the game is travel.
 ## Technology
 * This app was a fun exercise in creating and exporting javascript objects. There is a Letter object that knows how to present itself as a letter or a _. The Word object uses the Letter Object to create the hidden word.
 * This app uses the inquirer node package for user prompts.
+* The Letter object overwrites the javascript function toString(). The toString() is implicitly called in console.log(). It is a fun way to change what is written to console. In this case either a letter or _ is written.
